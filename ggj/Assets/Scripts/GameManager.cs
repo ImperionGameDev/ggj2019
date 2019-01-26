@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private GameStatus _status = GameStatus.Edit;
+    private GameStatus _status = GameStatus.MainMenu;
     public GameStatus Status
     {
         get

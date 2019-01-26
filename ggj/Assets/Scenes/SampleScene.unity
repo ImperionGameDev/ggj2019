@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 306163489}
   - component: {fileID: 306163488}
   - component: {fileID: 306163487}
+  - component: {fileID: 306163490}
   m_Layer: 5
   m_Name: ShopUI
   m_TagString: Untagged
@@ -145,10 +146,10 @@ RectTransform:
   m_Father: {fileID: 2042910250}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.700012, y: 12.899994}
-  m_SizeDelta: {x: -123, y: -137.2}
+  m_AnchorMin: {x: 0.06730039, y: 0.19439809}
+  m_AnchorMax: {x: 0.90749806, y: 0.86559236}
+  m_AnchoredPosition: {x: -1.2000122, y: 0.3999939}
+  m_SizeDelta: {x: 0, y: -0.19999695}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &306163487
 MonoBehaviour:
@@ -203,6 +204,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306163485}
   m_CullTransparentMesh: 0
+--- !u!114 &306163490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306163485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 10
+    m_Bottom: 10
+  m_ChildAlignment: 4
+  m_Spacing: 5
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 1
 --- !u!1 &346903238
 GameObject:
   m_ObjectHideFlags: 0

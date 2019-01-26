@@ -49,6 +49,7 @@ public class TowerSelectionUI : MonoBehaviour
 
     protected void TowerClicked(GameObject uiSender, GameObject towerPrefab)
     {
+        Debug.Log("Clicked");
         if (true)
         {
             Camera camera = Camera.main;
