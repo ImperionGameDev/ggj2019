@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public enum GameStatus
 { 
     MainMenu,
-    Game,
+    Preperation,
+    Edit,
+    Wave,
+    Lost,
     Pause
 }
