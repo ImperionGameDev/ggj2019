@@ -77,10 +77,10 @@ public class MapTileGenerator : MonoBehaviour
                 int i = (int)Math.Round(hit.point.x / tileSize.x - 0.5f + x / 2f);
                 int j = (int)Math.Round(hit.point.y / tileSize.y - 0.5f + y / 2f);
 
-                //if (i < 0 || i > x || j < 0 || j > y)
-                //{
-                //    return;
-                //}
+                if (i < 0 || i >= x || j < 0 || j >= y)
+                {
+                    return;
+                }
                 VisibileTile = TileFulls[i, j];
                 VisibileTile.SetActive(true);
             }
