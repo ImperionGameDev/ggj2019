@@ -10,7 +10,7 @@ public class MapTileGenerator : MonoBehaviour
     
     public Sprite tileFull;
 
-    private GameObject[,] TileFulls;
+    public GameObject[] Tiles;
 
     private bool _editMode = false;
 
@@ -21,44 +21,8 @@ public class MapTileGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TileFulls = new GameObject[x, y];
 
-        tileSize = tileFull.bounds.size;
-
-        for (int i = 0; i < x; i++)
-        { 
-            for (int j = 0; j < y; j++)
-            {
-                float posX = ((float)i - x / 2f + 0.5f) * tileSize.x;
-                float posY = ((float)j - y / 2f + 0.5f) * tileSize.y;
-
-                ////Tile Border
-                //var borderObj = new GameObject();
-                //borderObj.transform.SetParent(this.transform);
-                //borderObj.transform.position = new Vector3(posX, posY, -1);
-
-                //var borderRenderer = borderObj.AddComponent<SpriteRenderer>();
-                //borderRenderer.sprite = tileBorder;
-                //borderObj.name = $"tile-border({i}, {j})";
-
-                //TileBorders[i, j] = borderObj;
-
-                //Tile
-                var tileObj = new GameObject();
-                tileObj.transform.SetParent(this.transform);
-                tileObj.transform.position = new Vector3(posX, posY, -1);
-
-                var tileRenderer = tileObj.AddComponent<SpriteRenderer>();
-                tileRenderer.sprite = tileFull;
-                tileRenderer.name = $"tile({i}, {j})";
-
-                TileFulls[i, j] = tileObj;
-            }
-        }
-
-        //ActivateTileBorders(false);
-
-        foreach (var x in TileFulls)
+        foreach (var x in Tiles)
         {
             x.SetActive(false);
         }
@@ -68,6 +32,7 @@ public class MapTileGenerator : MonoBehaviour
     void Update()
     {
         VisibileTile?.SetActive(false);
+
         if (_editMode)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -77,12 +42,18 @@ public class MapTileGenerator : MonoBehaviour
                 int i = (int)Math.Round(hit.point.x / tileSize.x - 0.5f + x / 2f);
                 int j = (int)Math.Round(hit.point.y / tileSize.y - 0.5f + y / 2f);
 
-                if (i < 0 || i >= x || j < 0 || j >= y)
+                foreach (var tile in Tiles)
                 {
-                    return;
+                    Debug.Log(tile.GetComponent<SpriteRenderer>().bounds);
+
+                    if (tile.GetComponent<SpriteRenderer>().bounds.Contains(new Vector3(hit.point.x, hit.point.y, -1)))
+                    {
+                        VisibileTile = tile;
+                        VisibileTile?.SetActive(true);
+                        return;
+                    }
                 }
-                VisibileTile = TileFulls[i, j];
-                VisibileTile.SetActive(true);
+
             }
         }
     }
