@@ -9,6 +9,7 @@
 	}
 	SubShader
 	{
+		LOD 100
 		ZWrite Off
 		Blend SrcAlpha OneMinusSrcAlpha
 
@@ -18,7 +19,7 @@
 
 			#pragma vertex vert
 			#pragma fragment frag
-			#include "UnityCG.cginc"
+			#include "UnityCG.cginc"			
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
