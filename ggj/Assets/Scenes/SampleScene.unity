@@ -1049,6 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d707eacaa67c6624c8745cc8631fb538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ShopController: {fileID: 306163488}
   MainMenuObjects:
   - {fileID: 645100954}
   GameObjects:
@@ -1337,7 +1338,6 @@ MonoBehaviour:
   - {fileID: 1710236026}
   - {fileID: 2123783632}
   - {fileID: 1494213122}
-  VisibileTile: {fileID: 0}
 --- !u!61 &2034039061
 BoxCollider2D:
   m_ObjectHideFlags: 0

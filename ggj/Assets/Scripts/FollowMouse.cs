@@ -21,7 +21,7 @@ public class FollowMouse : MonoBehaviour
     void Update()
     {        
         Vector3 WorldPosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
-        WorldPosition.z = -1;
+        WorldPosition.z = -2;
         this.transform.SetPositionAndRotation(WorldPosition, Quaternion.identity);
     }
 }

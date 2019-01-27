@@ -98,7 +98,7 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 40b4f78c32d6445428e4b7e57604e6b5, type: 3}
     Damage: 0
     Price: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
     Range: 0
     AmmoPrefab: {fileID: 2438376358081594796, guid: 7f0acdefb4f1c284bb88704c249482d3,
       type: 3}

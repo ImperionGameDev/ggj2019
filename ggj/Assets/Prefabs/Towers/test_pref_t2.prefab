@@ -100,4 +100,5 @@ MonoBehaviour:
     Price: 0
     AttackSpeed: 0
     Range: 0
-    AmmoPrefab: {fileID: 0}
+    AmmoPrefab: {fileID: 2438376358081594796, guid: 7f0acdefb4f1c284bb88704c249482d3,
+      type: 3}

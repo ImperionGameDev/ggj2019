@@ -10,14 +10,15 @@ public class TowerController : MonoBehaviour
     private readonly GameStatus[] ActiveStates = new GameStatus[]
     {
         GameStatus.Wave,
-        GameStatus.Shopping        
+        GameStatus.Shopping
     };
     public bool IsPlaced { get; private set; }
-    private GameManager m_GameManagerRef;    
+    private GameManager m_GameManagerRef;
 
     public void Place(Vector3 Position)
     {
         this.gameObject.GetComponent<SpriteRenderer>().material = TowerModel.DefaultMaterial;
+        Position.z = -2;
         this.transform.position = Position;
         Destroy(this.gameObject.GetComponent<FollowMouse>());
         this.gameObject.GetComponent<SpriteRenderer>().sprite = TowerModel.Sprite;
@@ -25,16 +26,17 @@ public class TowerController : MonoBehaviour
 
     void Awake()
     {
-        m_GameManagerRef = FindObjectOfType<GameManager>();        
+        m_GameManagerRef = FindObjectOfType<GameManager>();
         IsPlaced = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
-    
+
+    private float LastTimeFired = 0;
     // Update is called once per frame
     void Update()
     {
@@ -47,19 +49,21 @@ public class TowerController : MonoBehaviour
             // ?
             return;
         }
-        
-            // Fix me
-        if (TowerModel.AttackSpeed < Time.deltaTime)
+
+        // Fix me
+        if (TowerModel.AttackSpeed < LastTimeFired)
         {
             EmitAmmo();
-        }     
+            LastTimeFired = 0;
+        }
+        LastTimeFired += Time.deltaTime;
     }
 
     private void EmitAmmo()
     {
         if (AreWeActive() && HasEnemyOnSights())
         {
-            Vector3 EmitOffset = new Vector3(5, 0, 0);
+            Vector3 EmitOffset = new Vector3(0, 0, 0);
             Instantiate(TowerModel.AmmoPrefab, this.transform.position + EmitOffset, Quaternion.identity, null);
         }
     }
@@ -71,14 +75,16 @@ public class TowerController : MonoBehaviour
 
     private bool HasEnemyOnSights()
     {
-        // 
-        Debug.DrawRay(this.transform.position, Vector3.right, Color.black);
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.right);
+        int EnemyLayer = 1 << LayerMask.NameToLayer("Enemy");
+        Vector2 StartingPosition = this.transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector3.right, Mathf.Infinity, EnemyLayer);
+
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             return true;
         }
 
         return false;
+
     }
 }

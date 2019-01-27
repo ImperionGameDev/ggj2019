@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] Enemies;
-    
+
     public Wave CurrentWave { get; private set; }
-    
+
     public float Elapsed { get; private set; }
 
     public int CurrentRespawnEnemyIndex { get; private set; }
@@ -51,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
 
         //TODO: Tile position
 
-        var respawned = Instantiate(selectedEnemy);
+        var respawned = Instantiate(selectedEnemy, new Vector3(0, 0, -2), Quaternion.identity);
         RespawnedEnemies[CurrentRespawnEnemyIndex++] = respawned;
     }
 
