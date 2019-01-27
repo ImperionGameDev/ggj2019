@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private GameStatus _status = GameStatus.Edit;
+    private GameStatus _status = GameStatus.MainMenu;
     public GameStatus Status
     {
         get
@@ -23,6 +23,14 @@ public class GameManager : MonoBehaviour
             _status = value;
             OnStatusChanged();
         }
+    }
+
+    // TODO(batuhan): IDK 
+    public TowerSelectionUI m_ShopController;
+    public bool IsShopOpen
+    {
+        get;
+        private set;
     }
 
     public GameObject[] MainMenuObjects;
@@ -61,7 +69,7 @@ public class GameManager : MonoBehaviour
     };
 
     public float preperationDuration = 15;
-        
+
     private float _elapsed;
     public float Elapsed
     {
@@ -90,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {             
         EnemySpawner = this.GetComponent<EnemySpawner>();
         EnableDisableObjects();
         UpdateStatusText();
@@ -114,13 +122,18 @@ public class GameManager : MonoBehaviour
         }
         else if (Status == GameStatus.Wave)
         {
-            if (EnemySpawner.Status == SpawnerStatus.Generated 
+            if (EnemySpawner.Status == SpawnerStatus.Generated
                 && EnemySpawner.RespawnedEnemies.All(x => x.GetComponent<Enemy>().CurrentHealth <= 0))
             {
                 EnemySpawner.enabled = false;
                 Status = GameStatus.Preperation;
             }
         }
+    }
+
+    public void OpenShopClick()
+    {
+        IsShopOpen = m_ShopController.Open();
     }
 
     public void PlayClick()
@@ -140,7 +153,7 @@ public class GameManager : MonoBehaviour
         {
             WaveStarted();
         }
-        else if (Status == GameStatus.Edit)
+        else if (Status == GameStatus.Preperation)
         {
             EnableEditMode();
         }
@@ -181,6 +194,9 @@ public class GameManager : MonoBehaviour
                 {
                     leftTimeText.text = time.ToString("00.00", CultureInfo.InvariantCulture);
                     leftTimeText.color = Color.red;
+
+                    // TODO(Batuhan): Delete me;
+                    OpenShopClick();
                 }
                 else
                 {
@@ -232,7 +248,7 @@ public class GameManager : MonoBehaviour
         {
             //TODO: Game should be ended
         }
-        
+
         EnemySpawner.SetWave(wave);
     }
 

@@ -192,7 +192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1640165c64a543c409d486ec5afa2714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxTowerCount: 3
   TowerPrefabs:
   - {fileID: 1782257767497631535, guid: c3ebda4e198c06946b7d1fdde6d06267, type: 3}
   - {fileID: 102748623866502254, guid: 15038c1b42fb30d45b5523fca1d63fbd, type: 3}
@@ -1338,6 +1337,7 @@ MonoBehaviour:
   - {fileID: 1710236026}
   - {fileID: 2123783632}
   - {fileID: 1494213122}
+  VisibileTile: {fileID: 0}
 --- !u!61 &2034039061
 BoxCollider2D:
   m_ObjectHideFlags: 0

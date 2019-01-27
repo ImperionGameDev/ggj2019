@@ -10,5 +10,6 @@ public enum GameStatus
     Edit,
     Wave,
     Lost,
-    Pause
+    Pause,
+    Shopping
 }
