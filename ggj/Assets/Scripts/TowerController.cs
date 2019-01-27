@@ -57,7 +57,7 @@ public class TowerController : MonoBehaviour
 
     private void EmitAmmo()
     {
-        if (AreWeActive() && HasEnemyOnSight())
+        if (AreWeActive() && HasEnemyOnSights())
         {
             Vector3 EmitOffset = new Vector3(5, 0, 0);
             Instantiate(TowerModel.AmmoPrefab, this.transform.position + EmitOffset, Quaternion.identity, null);
@@ -69,8 +69,10 @@ public class TowerController : MonoBehaviour
         return ActiveStates.Any(x => (x == m_GameManagerRef.Status)) && IsPlaced;
     }
 
-    private bool HasEnemyOnSight()
+    private bool HasEnemyOnSights()
     {
+        // 
+        Debug.DrawRay(this.transform.position, Vector3.right, Color.black);
         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.right);
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
